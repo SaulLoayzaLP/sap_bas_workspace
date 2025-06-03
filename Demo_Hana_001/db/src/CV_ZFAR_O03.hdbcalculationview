@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_ZFAR_O03" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="CV_ZFAR_O03"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SYN_ZFAR_O03_2022">
+    <resourceUri>SYN_ZFAR_O03_2022</resourceUri>
+  </DataSource>
+  <DataSource id="SYN_ZFAR_O03_2023">
+    <resourceUri>SYN_ZFAR_O03_2023</resourceUri>
+  </DataSource>
+  <DataSource id="CV_DIM_DEBITOR">
+    <resourceUri>CV_DIM_DEBITOR</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="FISCPER"/>
+      <viewAttribute id="AC_DOC_NO"/>
+      <viewAttribute id="ITEM_NUM"/>
+      <viewAttribute id="FI_DOCSTAT"/>
+      <viewAttribute id="ACCT_TYPE"/>
+      <viewAttribute id="AC_DOC_TYP"/>
+      <viewAttribute id="DOC_DATE"/>
+      <viewAttribute id="PSTNG_DATE"/>
+      <viewAttribute id="CLEAR_DATE"/>
+      <viewAttribute id="NETDUEDATE"/>
+      <viewAttribute id="LOC_CURRCY"/>
+      <viewAttribute id="DOC_CURRCY"/>
+      <viewAttribute id="CHRT_ACCTS"/>
+      <viewAttribute id="GL_ACCOUNT"/>
+      <viewAttribute id="CLR_DOC_NO"/>
+      <viewAttribute id="REF_DOC_NO"/>
+      <viewAttribute id="INV_DOC_NO"/>
+      <viewAttribute id="INV_ITEM"/>
+      <viewAttribute id="INV_YEAR"/>
+      <viewAttribute id="DOC_NUMBER"/>
+      <viewAttribute id="SALES_DIST"/>
+      <viewAttribute id="SALES_GRP"/>
+      <viewAttribute id="SALES_OFF"/>
+      <viewAttribute id="SHIP_POINT"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTR_CHAN"/>
+      <viewAttribute id="PLANT"/>
+      <viewAttribute id="DOC_CATEG"/>
+      <viewAttribute id="REF_DOC_NR"/>
+      <viewAttribute id="CUST_SALES"/>
+      <viewAttribute id="DEBIT_LC"/>
+      <viewAttribute id="CREDIT_LC"/>
+      <viewAttribute id="DEB_CRE_LC"/>
+      <viewAttribute id="DEBIT_DC"/>
+      <viewAttribute id="CREDIT_DC"/>
+      <viewAttribute id="DEB_CRE_DC"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_DEBITOR" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>&quot;DEBITOR&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="SYN_ZFAR_O03_2022"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="FISCPER"/>
+      <viewAttribute id="AC_DOC_NO"/>
+      <viewAttribute id="ITEM_NUM"/>
+      <viewAttribute id="FI_DOCSTAT"/>
+      <viewAttribute id="ACCT_TYPE"/>
+      <viewAttribute id="AC_DOC_TYP"/>
+      <viewAttribute id="DOC_DATE"/>
+      <viewAttribute id="PSTNG_DATE"/>
+      <viewAttribute id="CLEAR_DATE"/>
+      <viewAttribute id="NETDUEDATE"/>
+      <viewAttribute id="LOC_CURRCY"/>
+      <viewAttribute id="DOC_CURRCY"/>
+      <viewAttribute id="CHRT_ACCTS"/>
+      <viewAttribute id="GL_ACCOUNT"/>
+      <viewAttribute id="CLR_DOC_NO"/>
+      <viewAttribute id="REF_DOC_NO"/>
+      <viewAttribute id="INV_DOC_NO"/>
+      <viewAttribute id="INV_ITEM"/>
+      <viewAttribute id="INV_YEAR"/>
+      <viewAttribute id="DOC_NUMBER"/>
+      <viewAttribute id="SALES_DIST"/>
+      <viewAttribute id="SALES_GRP"/>
+      <viewAttribute id="SALES_OFF"/>
+      <viewAttribute id="SHIP_POINT"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTR_CHAN"/>
+      <viewAttribute id="PLANT"/>
+      <viewAttribute id="DOC_CATEG"/>
+      <viewAttribute id="REF_DOC_NR"/>
+      <viewAttribute id="CUST_SALES"/>
+      <viewAttribute id="DEBIT_LC"/>
+      <viewAttribute id="CREDIT_LC"/>
+      <viewAttribute id="DEB_CRE_LC"/>
+      <viewAttribute id="DEBIT_DC"/>
+      <viewAttribute id="CREDIT_DC"/>
+      <viewAttribute id="DEB_CRE_DC"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_DEBITOR" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>&quot;DEBITOR&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="SYN_ZFAR_O03_2023"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="TXTDM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CV_DIM_DEBITOR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="FISCPER"/>
+      <viewAttribute id="AC_DOC_NO"/>
+      <viewAttribute id="ITEM_NUM"/>
+      <viewAttribute id="FI_DOCSTAT"/>
+      <viewAttribute id="ACCT_TYPE"/>
+      <viewAttribute id="AC_DOC_TYP"/>
+      <viewAttribute id="DOC_DATE"/>
+      <viewAttribute id="PSTNG_DATE"/>
+      <viewAttribute id="CLEAR_DATE"/>
+      <viewAttribute id="NETDUEDATE"/>
+      <viewAttribute id="LOC_CURRCY"/>
+      <viewAttribute id="DOC_CURRCY"/>
+      <viewAttribute id="CHRT_ACCTS"/>
+      <viewAttribute id="GL_ACCOUNT"/>
+      <viewAttribute id="CLR_DOC_NO"/>
+      <viewAttribute id="REF_DOC_NO"/>
+      <viewAttribute id="INV_DOC_NO"/>
+      <viewAttribute id="INV_ITEM"/>
+      <viewAttribute id="INV_YEAR"/>
+      <viewAttribute id="DOC_NUMBER"/>
+      <viewAttribute id="SALES_DIST"/>
+      <viewAttribute id="SALES_GRP"/>
+      <viewAttribute id="SALES_OFF"/>
+      <viewAttribute id="SHIP_POINT"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTR_CHAN"/>
+      <viewAttribute id="PLANT"/>
+      <viewAttribute id="DOC_CATEG"/>
+      <viewAttribute id="REF_DOC_NR"/>
+      <viewAttribute id="CUST_SALES"/>
+      <viewAttribute id="DEBIT_LC" aggregationType="sum"/>
+      <viewAttribute id="CREDIT_LC" aggregationType="sum"/>
+      <viewAttribute id="DEB_CRE_LC" aggregationType="sum"/>
+      <viewAttribute id="DEBIT_DC" aggregationType="sum"/>
+      <viewAttribute id="CREDIT_DC" aggregationType="sum"/>
+      <viewAttribute id="DEB_CRE_DC" aggregationType="sum"/>
+    
+      <viewAttribute id="CC_DEBITOR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMP_CODE" source="COMP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR" source="DEBITOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FISCPER" source="FISCPER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_NO" source="AC_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEM_NUM" source="ITEM_NUM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FI_DOCSTAT" source="FI_DOCSTAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ACCT_TYPE" source="ACCT_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_TYP" source="AC_DOC_TYP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_DATE" source="DOC_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PSTNG_DATE" source="PSTNG_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLEAR_DATE" source="CLEAR_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETDUEDATE" source="NETDUEDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LOC_CURRCY" source="LOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_CURRCY" source="DOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHRT_ACCTS" source="CHRT_ACCTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_ACCOUNT" source="GL_ACCOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLR_DOC_NO" source="CLR_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REF_DOC_NO" source="REF_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INV_DOC_NO" source="INV_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INV_ITEM" source="INV_ITEM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INV_YEAR" source="INV_YEAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_NUMBER" source="DOC_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_DIST" source="SALES_DIST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_GRP" source="SALES_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_OFF" source="SALES_OFF"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIP_POINT" source="SHIP_POINT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORG" source="SALESORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTR_CHAN" source="DISTR_CHAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PLANT" source="PLANT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_CATEG" source="DOC_CATEG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REF_DOC_NR" source="REF_DOC_NR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUST_SALES" source="CUST_SALES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBIT_LC" source="DEBIT_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREDIT_LC" source="CREDIT_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_LC" source="DEB_CRE_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBIT_DC" source="DEBIT_DC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREDIT_DC" source="CREDIT_DC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_DC" source="DEB_CRE_DC"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DEBITOR" source="CC_DEBITOR"/>
+    </input>
+    <input node="Projection_2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMP_CODE" source="COMP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR" source="DEBITOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FISCPER" source="FISCPER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_NO" source="AC_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEM_NUM" source="ITEM_NUM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FI_DOCSTAT" source="FI_DOCSTAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ACCT_TYPE" source="ACCT_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_TYP" source="AC_DOC_TYP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_DATE" source="DOC_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PSTNG_DATE" source="PSTNG_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLEAR_DATE" source="CLEAR_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETDUEDATE" source="NETDUEDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LOC_CURRCY" source="LOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_CURRCY" source="DOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHRT_ACCTS" source="CHRT_ACCTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_ACCOUNT" source="GL_ACCOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLR_DOC_NO" source="CLR_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REF_DOC_NO" source="REF_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INV_DOC_NO" source="INV_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INV_ITEM" source="INV_ITEM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INV_YEAR" source="INV_YEAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_NUMBER" source="DOC_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_DIST" source="SALES_DIST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_GRP" source="SALES_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_OFF" source="SALES_OFF"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIP_POINT" source="SHIP_POINT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORG" source="SALESORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTR_CHAN" source="DISTR_CHAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PLANT" source="PLANT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_CATEG" source="DOC_CATEG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REF_DOC_NR" source="REF_DOC_NR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUST_SALES" source="CUST_SALES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBIT_LC" source="DEBIT_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREDIT_LC" source="CREDIT_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_LC" source="DEB_CRE_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBIT_DC" source="DEBIT_DC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREDIT_DC" source="CREDIT_DC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_DC" source="DEB_CRE_DC"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DEBITOR" source="CC_DEBITOR"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="FISCPER"/>
+      <viewAttribute id="AC_DOC_NO"/>
+      <viewAttribute id="ITEM_NUM"/>
+      <viewAttribute id="FI_DOCSTAT"/>
+      <viewAttribute id="ACCT_TYPE"/>
+      <viewAttribute id="AC_DOC_TYP"/>
+      <viewAttribute id="DOC_DATE"/>
+      <viewAttribute id="PSTNG_DATE"/>
+      <viewAttribute id="CLEAR_DATE"/>
+      <viewAttribute id="NETDUEDATE"/>
+      <viewAttribute id="LOC_CURRCY"/>
+      <viewAttribute id="DOC_CURRCY"/>
+      <viewAttribute id="CHRT_ACCTS"/>
+      <viewAttribute id="GL_ACCOUNT"/>
+      <viewAttribute id="CLR_DOC_NO"/>
+      <viewAttribute id="REF_DOC_NO"/>
+      <viewAttribute id="INV_DOC_NO"/>
+      <viewAttribute id="INV_ITEM"/>
+      <viewAttribute id="INV_YEAR"/>
+      <viewAttribute id="DOC_NUMBER"/>
+      <viewAttribute id="SALES_DIST"/>
+      <viewAttribute id="SALES_GRP"/>
+      <viewAttribute id="SALES_OFF"/>
+      <viewAttribute id="SHIP_POINT"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTR_CHAN"/>
+      <viewAttribute id="PLANT"/>
+      <viewAttribute id="DOC_CATEG"/>
+      <viewAttribute id="REF_DOC_NR"/>
+      <viewAttribute id="CUST_SALES"/>
+      <viewAttribute id="DEBIT_LC" aggregationType="sum"/>
+      <viewAttribute id="CREDIT_LC" aggregationType="sum"/>
+      <viewAttribute id="DEB_CRE_LC" aggregationType="sum"/>
+      <viewAttribute id="DEBIT_DC" aggregationType="sum"/>
+      <viewAttribute id="CREDIT_DC" aggregationType="sum"/>
+      <viewAttribute id="DEB_CRE_DC" aggregationType="sum"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="DEBITOR_TEXT"/>
+      <viewAttribute hidden="true" id="JOIN$CC_DEBITOR$DEBITOR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Union_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMP_CODE" source="COMP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR" source="DEBITOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FISCPER" source="FISCPER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_NO" source="AC_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEM_NUM" source="ITEM_NUM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FI_DOCSTAT" source="FI_DOCSTAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ACCT_TYPE" source="ACCT_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_TYP" source="AC_DOC_TYP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_DATE" source="DOC_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PSTNG_DATE" source="PSTNG_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLEAR_DATE" source="CLEAR_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETDUEDATE" source="NETDUEDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LOC_CURRCY" source="LOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_CURRCY" source="DOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHRT_ACCTS" source="CHRT_ACCTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_ACCOUNT" source="GL_ACCOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLR_DOC_NO" source="CLR_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REF_DOC_NO" source="REF_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INV_DOC_NO" source="INV_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INV_ITEM" source="INV_ITEM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INV_YEAR" source="INV_YEAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_NUMBER" source="DOC_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_DIST" source="SALES_DIST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_GRP" source="SALES_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_OFF" source="SALES_OFF"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIP_POINT" source="SHIP_POINT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORG" source="SALESORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTR_CHAN" source="DISTR_CHAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PLANT" source="PLANT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_CATEG" source="DOC_CATEG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REF_DOC_NR" source="REF_DOC_NR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUST_SALES" source="CUST_SALES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBIT_LC" source="DEBIT_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREDIT_LC" source="CREDIT_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_LC" source="DEB_CRE_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBIT_DC" source="DEBIT_DC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREDIT_DC" source="CREDIT_DC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_DC" source="DEB_CRE_DC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CC_DEBITOR$DEBITOR" source="CC_DEBITOR"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR_TEXT" source="TXTDM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CC_DEBITOR$DEBITOR" source="DEBITOR"/>
+    </input>
+    <joinAttribute name="JOIN$CC_DEBITOR$DEBITOR"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="COMP_CODE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMP_CODE"/>
+      <keyMapping columnObjectName="Join_1" columnName="COMP_CODE"/>
+    </attribute>
+    <attribute id="DEBITOR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEBITOR"/>
+      <keyMapping columnObjectName="Join_1" columnName="DEBITOR"/>
+    </attribute>
+    <attribute id="FISCPER" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FISCPER"/>
+      <keyMapping columnObjectName="Join_1" columnName="FISCPER"/>
+    </attribute>
+    <attribute id="AC_DOC_NO" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AC_DOC_NO"/>
+      <keyMapping columnObjectName="Join_1" columnName="AC_DOC_NO"/>
+    </attribute>
+    <attribute id="ITEM_NUM" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEM_NUM"/>
+      <keyMapping columnObjectName="Join_1" columnName="ITEM_NUM"/>
+    </attribute>
+    <attribute id="FI_DOCSTAT" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FI_DOCSTAT"/>
+      <keyMapping columnObjectName="Join_1" columnName="FI_DOCSTAT"/>
+    </attribute>
+    <attribute id="ACCT_TYPE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACCT_TYPE"/>
+      <keyMapping columnObjectName="Join_1" columnName="ACCT_TYPE"/>
+    </attribute>
+    <attribute id="AC_DOC_TYP" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AC_DOC_TYP"/>
+      <keyMapping columnObjectName="Join_1" columnName="AC_DOC_TYP"/>
+    </attribute>
+    <attribute id="DOC_DATE" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOC_DATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="DOC_DATE"/>
+    </attribute>
+    <attribute id="PSTNG_DATE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PSTNG_DATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="PSTNG_DATE"/>
+    </attribute>
+    <attribute id="CLEAR_DATE" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CLEAR_DATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="CLEAR_DATE"/>
+    </attribute>
+    <attribute id="NETDUEDATE" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NETDUEDATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="NETDUEDATE"/>
+    </attribute>
+    <attribute id="LOC_CURRCY" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LOC_CURRCY"/>
+      <keyMapping columnObjectName="Join_1" columnName="LOC_CURRCY"/>
+    </attribute>
+    <attribute id="DOC_CURRCY" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOC_CURRCY"/>
+      <keyMapping columnObjectName="Join_1" columnName="DOC_CURRCY"/>
+    </attribute>
+    <attribute id="CHRT_ACCTS" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CHRT_ACCTS"/>
+      <keyMapping columnObjectName="Join_1" columnName="CHRT_ACCTS"/>
+    </attribute>
+    <attribute id="GL_ACCOUNT" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GL_ACCOUNT"/>
+      <keyMapping columnObjectName="Join_1" columnName="GL_ACCOUNT"/>
+    </attribute>
+    <attribute id="CLR_DOC_NO" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CLR_DOC_NO"/>
+      <keyMapping columnObjectName="Join_1" columnName="CLR_DOC_NO"/>
+    </attribute>
+    <attribute id="REF_DOC_NO" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REF_DOC_NO"/>
+      <keyMapping columnObjectName="Join_1" columnName="REF_DOC_NO"/>
+    </attribute>
+    <attribute id="INV_DOC_NO" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="INV_DOC_NO"/>
+      <keyMapping columnObjectName="Join_1" columnName="INV_DOC_NO"/>
+    </attribute>
+    <attribute id="INV_ITEM" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="INV_ITEM"/>
+      <keyMapping columnObjectName="Join_1" columnName="INV_ITEM"/>
+    </attribute>
+    <attribute id="INV_YEAR" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="INV_YEAR"/>
+      <keyMapping columnObjectName="Join_1" columnName="INV_YEAR"/>
+    </attribute>
+    <attribute id="DOC_NUMBER" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOC_NUMBER"/>
+      <keyMapping columnObjectName="Join_1" columnName="DOC_NUMBER"/>
+    </attribute>
+    <attribute id="SALES_DIST" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_DIST"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALES_DIST"/>
+    </attribute>
+    <attribute id="SALES_GRP" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_GRP"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALES_GRP"/>
+    </attribute>
+    <attribute id="SALES_OFF" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_OFF"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALES_OFF"/>
+    </attribute>
+    <attribute id="SHIP_POINT" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIP_POINT"/>
+      <keyMapping columnObjectName="Join_1" columnName="SHIP_POINT"/>
+    </attribute>
+    <attribute id="SALESORG" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALESORG"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALESORG"/>
+    </attribute>
+    <attribute id="DISTR_CHAN" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DISTR_CHAN"/>
+      <keyMapping columnObjectName="Join_1" columnName="DISTR_CHAN"/>
+    </attribute>
+    <attribute id="PLANT" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PLANT"/>
+      <keyMapping columnObjectName="Join_1" columnName="PLANT"/>
+    </attribute>
+    <attribute id="DOC_CATEG" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOC_CATEG"/>
+      <keyMapping columnObjectName="Join_1" columnName="DOC_CATEG"/>
+    </attribute>
+    <attribute id="REF_DOC_NR" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REF_DOC_NR"/>
+      <keyMapping columnObjectName="Join_1" columnName="REF_DOC_NR"/>
+    </attribute>
+    <attribute id="CUST_SALES" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUST_SALES"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUST_SALES"/>
+    </attribute>
+    <attribute id="COUNTRY" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Join_1" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="REGION" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping columnObjectName="Join_1" columnName="REGION"/>
+    </attribute>
+    <attribute id="DEBITOR_TEXT" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTDM"/>
+      <keyMapping columnObjectName="Join_1" columnName="DEBITOR_TEXT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="DEBIT_LC" order="33" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DEBIT_LC"/>
+      <measureMapping columnObjectName="Join_1" columnName="DEBIT_LC"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="CREDIT_LC" order="34" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CREDIT_LC"/>
+      <measureMapping columnObjectName="Join_1" columnName="CREDIT_LC"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="DEB_CRE_LC" order="35" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DEB_CRE_LC"/>
+      <measureMapping columnObjectName="Join_1" columnName="DEB_CRE_LC"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="DEBIT_DC" order="36" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DEBIT_DC"/>
+      <measureMapping columnObjectName="Join_1" columnName="DEBIT_DC"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="CREDIT_DC" order="37" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CREDIT_DC"/>
+      <measureMapping columnObjectName="Join_1" columnName="CREDIT_DC"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="DEB_CRE_DC" order="38" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DEB_CRE_DC"/>
+      <measureMapping columnObjectName="Join_1" columnName="DEB_CRE_DC"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="328.6900820831794" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="516.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="516.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118.66666666666666" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="395.83468516943316" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="328.6900820831794" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Union_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="164.22998046875"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="337" y="601"/>
+      <rectangleSize width="156.8984375"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,22 @@
+{
+	"USR_SERVICES": {
+		"application_user": {
+			"global_roles": [
+				{
+					"roles": [
+						"genericRoleForAP"
+					]
+				}
+			]
+		},
+		"object_owner": {
+			"global_roles": [
+				{
+					"roles": [
+						"genericRoleForOO"
+					]
+				}
+			]
+		}
+	}
+}

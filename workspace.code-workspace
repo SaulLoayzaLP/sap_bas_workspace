@@ -1,0 +1,13 @@
+{
+    "folders": [
+        {
+            "name": "Demo_Hana_001",
+            "path": "Demo_Hana_001"
+        }
+    ],
+    "settings": {
+        "SAP HANA Database Artifacts.lastSelectedTargetPath": "/home/user/projects/Demo_Hana_001/db/src",
+        "SAP HANA Database Explorer.Objects Definition For SQL Generation Retention Time": 7,
+        "SAP HANA Database Explorer.Use Objects Definition For SQL Generation": false
+    }
+}
