@@ -1,0 +1,14 @@
+{
+  "SYN_ZFIAR_C03_2022": {
+    "target": {
+      "object": "FACT_ZFIAR_C03_2022",
+      "schema": "SAP_IDES"
+    }
+  },
+  "SYN_ZFIAR_C03_2023": {
+    "target": {
+      "object": "FACT_ZFIAR_C03_2023",
+      "schema": "SAP_IDES"
+    }
+  }
+}
