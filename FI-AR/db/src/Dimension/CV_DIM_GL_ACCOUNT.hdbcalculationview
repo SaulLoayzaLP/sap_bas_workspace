@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_DIM_GL_ACCOUNT" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="CV_DIM_GL_ACCOUNT"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SYN_GL_ACCOUNT_ATTR">
+    <resourceUri>SYN_GL_ACCOUNT_ATTR</resourceUri>
+  </DataSource>
+  <DataSource id="SYN_GL_ACCOUNT_TEXT">
+    <resourceUri>SYN_GL_ACCOUNT_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="GL_ACCOUNT"/>
+      <viewAttribute id="CHRT_ACCTS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SYN_GL_ACCOUNT_ATTR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="GL_ACCOUNT"/>
+      <viewAttribute id="GL_ACCOUNT_DESC"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SYN_GL_ACCOUNT_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_ACCOUNT_DESC" source="TXTLG"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="GL_ACCOUNT"/>
+      <viewAttribute id="CHRT_ACCTS"/>
+      <viewAttribute id="GL_ACCOUNT_DESC"/>
+      <viewAttribute hidden="true" id="JOIN$GL_ACCOUNT$GL_ACCOUNT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_ACCOUNT" source="GL_ACCOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHRT_ACCTS" source="CHRT_ACCTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GL_ACCOUNT$GL_ACCOUNT" source="GL_ACCOUNT"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_ACCOUNT_DESC" source="GL_ACCOUNT_DESC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GL_ACCOUNT$GL_ACCOUNT" source="GL_ACCOUNT"/>
+    </input>
+    <joinAttribute name="JOIN$GL_ACCOUNT$GL_ACCOUNT"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="GL_ACCOUNT" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GL_ACCOUNT"/>
+      <keyMapping columnObjectName="Join_1" columnName="GL_ACCOUNT"/>
+    </attribute>
+    <attribute id="CHRT_ACCTS" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CHRT_ACCTS"/>
+      <keyMapping columnObjectName="Join_1" columnName="CHRT_ACCTS"/>
+    </attribute>
+    <attribute id="GL_ACCOUNT_DESC" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTLG"/>
+      <keyMapping columnObjectName="Join_1" columnName="GL_ACCOUNT_DESC"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-30" y="347"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="243" y="347"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="214"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="161.17919921875"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="197.8583984375"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

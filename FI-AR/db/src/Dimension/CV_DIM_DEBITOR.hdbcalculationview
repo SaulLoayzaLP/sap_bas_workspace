@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_DIM_DEBITOR" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="CV_DIM_DEBITOR"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SYN_DEBITOR_ATTR">
+    <resourceUri>SYN_DEBITOR_ATTR</resourceUri>
+  </DataSource>
+  <DataSource id="SYN_DEBITOR_TEXT">
+    <resourceUri>SYN_DEBITOR_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="SYN_CUST_SALES_ATTR">
+    <resourceUri>SYN_CUST_SALES_ATTR</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="CUST_CLASS"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COMP_CODE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SYN_DEBITOR_ATTR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="DEBITOR_DESC"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SYN_DEBITOR_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR_DESC" source="TXTDM"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="CUST_SALES"/>
+      <viewAttribute id="CUST_GRP3"/>
+      <viewAttribute id="PMNTTRMS"/>
+      <viewAttribute id="SALES_DIST"/>
+      <viewAttribute id="SALES_GRP"/>
+      <viewAttribute id="SALES_OFF"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_DIVISION" datatype="NVARCHAR" length="2" expressionLanguage="SQL">
+        <formula>SUBSTR(&quot;CUST_SALES&quot;,0,2)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_DISTR_CHAN" datatype="NVARCHAR" length="2" expressionLanguage="SQL">
+        <formula>SUBSTR(&quot;CUST_SALES&quot;,4, 2)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_SALES_ORG" datatype="NVARCHAR" length="4" expressionLanguage="SQL">
+        <formula>SUBSTR(&quot;CUST_SALES&quot;,7, 4)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_DEBITOR" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>SUBSTR(&quot;CUST_SALES&quot;,12, 10)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="SYN_CUST_SALES_ATTR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="CUST_CLASS"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="DEBITOR_DESC"/>
+      <viewAttribute hidden="true" id="JOIN$DEBITOR$DEBITOR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR" source="DEBITOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUST_CLASS" source="CUST_CLASS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMP_CODE" source="COMP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DEBITOR$DEBITOR" source="DEBITOR"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR_DESC" source="DEBITOR_DESC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DEBITOR$DEBITOR" source="DEBITOR"/>
+    </input>
+    <joinAttribute name="JOIN$DEBITOR$DEBITOR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="CUST_CLASS"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="DEBITOR_DESC"/>
+      <viewAttribute id="CC_DIVISION"/>
+      <viewAttribute id="CC_DISTR_CHAN"/>
+      <viewAttribute id="CC_SALES_ORG"/>
+      <viewAttribute id="CUST_GRP3"/>
+      <viewAttribute id="PMNTTRMS"/>
+      <viewAttribute id="SALES_DIST"/>
+      <viewAttribute id="SALES_GRP"/>
+      <viewAttribute id="SALES_OFF"/>
+      <viewAttribute hidden="true" id="JOIN$DEBITOR$CC_DEBITOR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR" source="DEBITOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUST_CLASS" source="CUST_CLASS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMP_CODE" source="COMP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR_DESC" source="DEBITOR_DESC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DEBITOR$CC_DEBITOR" source="DEBITOR"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DIVISION" source="CC_DIVISION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DISTR_CHAN" source="CC_DISTR_CHAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_SALES_ORG" source="CC_SALES_ORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUST_GRP3" source="CUST_GRP3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PMNTTRMS" source="PMNTTRMS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_DIST" source="SALES_DIST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_GRP" source="SALES_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_OFF" source="SALES_OFF"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DEBITOR$CC_DEBITOR" source="CC_DEBITOR"/>
+    </input>
+    <joinAttribute name="JOIN$DEBITOR$CC_DEBITOR"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_2">
+  <attributes>
+    <attribute id="DEBITOR" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEBITOR"/>
+      <keyMapping columnObjectName="Join_2" columnName="DEBITOR"/>
+    </attribute>
+    <attribute id="COUNTRY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Join_2" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="CUST_CLASS" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUST_CLASS"/>
+      <keyMapping columnObjectName="Join_2" columnName="CUST_CLASS"/>
+    </attribute>
+    <attribute id="REGION" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping columnObjectName="Join_2" columnName="REGION"/>
+    </attribute>
+    <attribute id="COMP_CODE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMP_CODE"/>
+      <keyMapping columnObjectName="Join_2" columnName="COMP_CODE"/>
+    </attribute>
+    <attribute id="DEBITOR_DESC" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTDM"/>
+      <keyMapping columnObjectName="Join_2" columnName="DEBITOR_DESC"/>
+    </attribute>
+    <attribute id="DIVISION" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_DIVISION"/>
+      <keyMapping columnObjectName="Join_2" columnName="CC_DIVISION"/>
+    </attribute>
+    <attribute id="DISTR_CHAN" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_DISTR_CHAN"/>
+      <keyMapping columnObjectName="Join_2" columnName="CC_DISTR_CHAN"/>
+    </attribute>
+    <attribute id="SALES_ORG" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_SALES_ORG"/>
+      <keyMapping columnObjectName="Join_2" columnName="CC_SALES_ORG"/>
+    </attribute>
+    <attribute id="CUST_GRP3" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUST_GRP3"/>
+      <keyMapping columnObjectName="Join_2" columnName="CUST_GRP3"/>
+    </attribute>
+    <attribute id="PMNTTRMS" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PMNTTRMS"/>
+      <keyMapping columnObjectName="Join_2" columnName="PMNTTRMS"/>
+    </attribute>
+    <attribute id="SALES_DIST" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_DIST"/>
+      <keyMapping columnObjectName="Join_2" columnName="SALES_DIST"/>
+    </attribute>
+    <attribute id="SALES_GRP" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_GRP"/>
+      <keyMapping columnObjectName="Join_2" columnName="SALES_GRP"/>
+    </attribute>
+    <attribute id="SALES_OFF" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_OFF"/>
+      <keyMapping columnObjectName="Join_2" columnName="SALES_OFF"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-69" y="459"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="173" y="459"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="54" y="320"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="158.1337890625"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136.0234375"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="292" y="320"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="134" y="196"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="171.37353515625"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="178.29150390625"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

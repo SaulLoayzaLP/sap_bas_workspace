@@ -1,0 +1,44 @@
+{
+  "SYN_DEBITOR_ATTR": {
+    "target": {
+      "object": "DEBITOR_ATTR",
+      "schema": "SAP_IDES"
+    }
+  },
+  "SYN_DEBITOR_TEXT": {
+    "target": {
+      "object": "DEBITOR_TEXT",
+      "schema": "SAP_IDES"
+    }
+  },
+  "SYN_CUST_SALES_ATTR": {
+    "target": {
+      "object": "CUST_SALES_ATTR",
+      "schema": "SAP_IDES"
+    }
+  },
+  "SYN_GL_ACCOUNT_ATTR": {
+    "target": {
+      "object": "GL_ACCOUNT_ATTR",
+      "schema": "SAP_IDES"
+    }
+  },
+  "SYN_GL_ACCOUNT_TEXT": {
+    "target": {
+      "object": "GL_ACCOUNT_TEXT",
+      "schema": "SAP_IDES"
+    }
+  },
+  "SYN_COMP_CODE_ATTR": {
+    "target": {
+      "object": "COMP_CODE_ATTR",
+      "schema": "SAP_IDES"
+    }
+  },
+  "SYN_COMP_CODE_TEXT": {
+    "target": {
+      "object": "COMP_CODE_TEXT",
+      "schema": "SAP_IDES"
+    }
+  }
+}

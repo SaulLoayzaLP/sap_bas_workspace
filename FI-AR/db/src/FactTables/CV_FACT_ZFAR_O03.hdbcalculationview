@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_FACT_ZFAR_O03" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="CV_FACT_ZFAR_O03"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SYN_ZFAR_O03_2022">
+    <resourceUri>SYN_ZFAR_O03_2022</resourceUri>
+  </DataSource>
+  <DataSource id="SYN_ZFAR_O03_2023">
+    <resourceUri>SYN_ZFAR_O03_2023</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="FISCPER"/>
+      <viewAttribute id="AC_DOC_NO"/>
+      <viewAttribute id="FI_DOCSTAT"/>
+      <viewAttribute id="AC_DOC_TYP"/>
+      <viewAttribute id="DOC_DATE"/>
+      <viewAttribute id="PSTNG_DATE"/>
+      <viewAttribute id="CLEAR_DATE"/>
+      <viewAttribute id="LOC_CURRCY"/>
+      <viewAttribute id="DOC_CURRCY"/>
+      <viewAttribute id="CHRT_ACCTS"/>
+      <viewAttribute id="GL_ACCOUNT"/>
+      <viewAttribute id="CLR_DOC_NO"/>
+      <viewAttribute id="SALES_DIST"/>
+      <viewAttribute id="SALES_GRP"/>
+      <viewAttribute id="SALES_OFF"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTR_CHAN"/>
+      <viewAttribute id="CUST_SALES"/>
+      <viewAttribute id="DEB_CRE_LC"/>
+      <viewAttribute id="DEB_CRE_DC"/>
+      <viewAttribute id="SHIP_POINT"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_COMP_CODE" datatype="NVARCHAR" length="4" expressionLanguage="SQL">
+        <formula>&quot;COMP_CODE&quot;</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_DEBITOR" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>&quot;DEBITOR&quot;</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_GL_ACCOUNT" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>&quot;GL_ACCOUNT&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="SYN_ZFAR_O03_2022"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="FISCPER"/>
+      <viewAttribute id="AC_DOC_NO"/>
+      <viewAttribute id="FI_DOCSTAT"/>
+      <viewAttribute id="AC_DOC_TYP"/>
+      <viewAttribute id="DOC_DATE"/>
+      <viewAttribute id="PSTNG_DATE"/>
+      <viewAttribute id="CLEAR_DATE"/>
+      <viewAttribute id="LOC_CURRCY"/>
+      <viewAttribute id="DOC_CURRCY"/>
+      <viewAttribute id="CHRT_ACCTS"/>
+      <viewAttribute id="GL_ACCOUNT"/>
+      <viewAttribute id="CLR_DOC_NO"/>
+      <viewAttribute id="SALES_DIST"/>
+      <viewAttribute id="SALES_GRP"/>
+      <viewAttribute id="SALES_OFF"/>
+      <viewAttribute id="SHIP_POINT"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTR_CHAN"/>
+      <viewAttribute id="CUST_SALES"/>
+      <viewAttribute id="DEB_CRE_LC"/>
+      <viewAttribute id="DEB_CRE_DC"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_COMP_CODE" datatype="NVARCHAR" length="4" expressionLanguage="SQL">
+        <formula>&quot;COMP_CODE&quot;</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_DEBITOR" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>&quot;DEBITOR&quot;</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_GL_ACCOUNT" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>&quot;GL_ACCOUNT&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="SYN_ZFAR_O03_2023"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="FISCPER"/>
+      <viewAttribute id="AC_DOC_NO"/>
+      <viewAttribute id="FI_DOCSTAT"/>
+      <viewAttribute id="AC_DOC_TYP"/>
+      <viewAttribute id="DOC_DATE"/>
+      <viewAttribute id="PSTNG_DATE"/>
+      <viewAttribute id="CLEAR_DATE"/>
+      <viewAttribute id="LOC_CURRCY"/>
+      <viewAttribute id="DOC_CURRCY"/>
+      <viewAttribute id="CHRT_ACCTS"/>
+      <viewAttribute id="CLR_DOC_NO"/>
+      <viewAttribute id="SALES_DIST"/>
+      <viewAttribute id="SALES_GRP"/>
+      <viewAttribute id="SALES_OFF"/>
+      <viewAttribute id="SALESORG"/>
+      <viewAttribute id="DISTR_CHAN"/>
+      <viewAttribute id="CUST_SALES"/>
+      <viewAttribute id="DEB_CRE_LC" aggregationType="sum"/>
+      <viewAttribute id="DEB_CRE_DC" aggregationType="sum"/>
+    
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="DEBITOR"/>
+      <viewAttribute id="GL_ACCOUNT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FISCPER" source="FISCPER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_NO" source="AC_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FI_DOCSTAT" source="FI_DOCSTAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_TYP" source="AC_DOC_TYP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_DATE" source="DOC_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PSTNG_DATE" source="PSTNG_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLEAR_DATE" source="CLEAR_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LOC_CURRCY" source="LOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_CURRCY" source="DOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHRT_ACCTS" source="CHRT_ACCTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLR_DOC_NO" source="CLR_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_DIST" source="SALES_DIST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_GRP" source="SALES_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_OFF" source="SALES_OFF"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORG" source="SALESORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTR_CHAN" source="DISTR_CHAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUST_SALES" source="CUST_SALES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_LC" source="DEB_CRE_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_DC" source="DEB_CRE_DC"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMP_CODE" source="CC_COMP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR" source="CC_DEBITOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_ACCOUNT" source="CC_GL_ACCOUNT"/>
+    </input>
+    <input node="Projection_2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FISCPER" source="FISCPER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_NO" source="AC_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FI_DOCSTAT" source="FI_DOCSTAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AC_DOC_TYP" source="AC_DOC_TYP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_DATE" source="DOC_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PSTNG_DATE" source="PSTNG_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLEAR_DATE" source="CLEAR_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LOC_CURRCY" source="LOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DOC_CURRCY" source="DOC_CURRCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHRT_ACCTS" source="CHRT_ACCTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLR_DOC_NO" source="CLR_DOC_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_DIST" source="SALES_DIST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_GRP" source="SALES_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_OFF" source="SALES_OFF"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORG" source="SALESORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTR_CHAN" source="DISTR_CHAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUST_SALES" source="CUST_SALES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_LC" source="DEB_CRE_LC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEB_CRE_DC" source="DEB_CRE_DC"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMP_CODE" source="CC_COMP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEBITOR" source="CC_DEBITOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_ACCOUNT" source="CC_GL_ACCOUNT"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="Union_1_FISCPER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_FISCPER"/>
+      <keyMapping columnObjectName="Union_1" columnName="FISCPER"/>
+    </attribute>
+    <attribute id="Union_1_AC_DOC_NO" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_AC_DOC_NO"/>
+      <keyMapping columnObjectName="Union_1" columnName="AC_DOC_NO"/>
+    </attribute>
+    <attribute id="Union_1_FI_DOCSTAT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_FI_DOCSTAT"/>
+      <keyMapping columnObjectName="Union_1" columnName="FI_DOCSTAT"/>
+    </attribute>
+    <attribute id="Union_1_AC_DOC_TYP" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_AC_DOC_TYP"/>
+      <keyMapping columnObjectName="Union_1" columnName="AC_DOC_TYP"/>
+    </attribute>
+    <attribute id="Union_1_DOC_DATE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_DOC_DATE"/>
+      <keyMapping columnObjectName="Union_1" columnName="DOC_DATE"/>
+    </attribute>
+    <attribute id="Union_1_PSTNG_DATE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_PSTNG_DATE"/>
+      <keyMapping columnObjectName="Union_1" columnName="PSTNG_DATE"/>
+    </attribute>
+    <attribute id="Union_1_CLEAR_DATE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_CLEAR_DATE"/>
+      <keyMapping columnObjectName="Union_1" columnName="CLEAR_DATE"/>
+    </attribute>
+    <attribute id="Union_1_LOC_CURRCY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_LOC_CURRCY"/>
+      <keyMapping columnObjectName="Union_1" columnName="LOC_CURRCY"/>
+    </attribute>
+    <attribute id="Union_1_DOC_CURRCY" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_DOC_CURRCY"/>
+      <keyMapping columnObjectName="Union_1" columnName="DOC_CURRCY"/>
+    </attribute>
+    <attribute id="Union_1_CHRT_ACCTS" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_CHRT_ACCTS"/>
+      <keyMapping columnObjectName="Union_1" columnName="CHRT_ACCTS"/>
+    </attribute>
+    <attribute id="Union_1_CLR_DOC_NO" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_CLR_DOC_NO"/>
+      <keyMapping columnObjectName="Union_1" columnName="CLR_DOC_NO"/>
+    </attribute>
+    <attribute id="Union_1_SALES_DIST" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_SALES_DIST"/>
+      <keyMapping columnObjectName="Union_1" columnName="SALES_DIST"/>
+    </attribute>
+    <attribute id="Union_1_SALES_GRP" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_SALES_GRP"/>
+      <keyMapping columnObjectName="Union_1" columnName="SALES_GRP"/>
+    </attribute>
+    <attribute id="Union_1_SALES_OFF" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_SALES_OFF"/>
+      <keyMapping columnObjectName="Union_1" columnName="SALES_OFF"/>
+    </attribute>
+    <attribute id="Union_1_SALESORG" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_SALESORG"/>
+      <keyMapping columnObjectName="Union_1" columnName="SALESORG"/>
+    </attribute>
+    <attribute id="Union_1_DISTR_CHAN" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_DISTR_CHAN"/>
+      <keyMapping columnObjectName="Union_1" columnName="DISTR_CHAN"/>
+    </attribute>
+    <attribute id="Union_1_CUST_SALES" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Union_1_CUST_SALES"/>
+      <keyMapping columnObjectName="Union_1" columnName="CUST_SALES"/>
+    </attribute>
+    <attribute id="Union_1_COMP_CODE" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMP_CODE_1"/>
+      <keyMapping columnObjectName="Union_1" columnName="COMP_CODE"/>
+    </attribute>
+    <attribute id="Union_1_DEBITOR" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEBITOR_1"/>
+      <keyMapping columnObjectName="Union_1" columnName="DEBITOR"/>
+    </attribute>
+    <attribute id="Union_1_GL_ACCOUNT" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GL_ACCOUNT_1"/>
+      <keyMapping columnObjectName="Union_1" columnName="GL_ACCOUNT"/>
+    </attribute>
+    <attribute id="COMP_CODE$local">
+      <descriptions defaultDescription="COMP_CODE"/>
+      <keyMapping columnObjectName="Union_1" columnName="COMP_CODE"/>
+    </attribute>
+    <attribute id="GL_ACCOUNT$local">
+      <descriptions defaultDescription="GL_ACCOUNT"/>
+      <keyMapping columnObjectName="Union_1" columnName="GL_ACCOUNT"/>
+    </attribute>
+    <attribute id="DEBITOR$local">
+      <descriptions defaultDescription="DEBITOR"/>
+      <keyMapping columnObjectName="Union_1" columnName="DEBITOR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="DEB_CRE_LC" order="21" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DEB_CRE_LC"/>
+      <measureMapping columnObjectName="Union_1" columnName="DEB_CRE_LC"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="DEB_CRE_DC" order="22" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DEB_CRE_DC"/>
+      <measureMapping columnObjectName="Union_1" columnName="DEB_CRE_DC"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+  <sharedDimensions>
+    <logicalJoin associatedObjectUri="CV_DIM_COMP_CODE">
+      <attributes>
+        <attributeRef>COMP_CODE$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>COMP_CODE</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+      <associatedAttributeFeatures>
+        <attributeReference alias="CV_DIM_COMP_CODE_COMP_CODE" attributeName="COMP_CODE"/>
+        <attributeReference alias="CV_DIM_COMP_CODE_CHRT_ACCTS" attributeName="CHRT_ACCTS"/>
+        <attributeReference alias="CV_DIM_COMP_CODE_COMPANY" attributeName="COMPANY"/>
+        <attributeReference alias="CV_DIM_COMP_CODE_COUNTRY" attributeName="COUNTRY"/>
+        <attributeReference alias="CV_DIM_COMP_CODE_CURRENCY" attributeName="CURRENCY"/>
+        <attributeReference alias="CV_DIM_COMP_CODE_COMP_CODE_DESC" attributeName="COMP_CODE_DESC"/>
+      </associatedAttributeFeatures>
+    </logicalJoin>
+    <logicalJoin associatedObjectUri="CV_DIM_GL_ACCOUNT">
+      <attributes>
+        <attributeRef>GL_ACCOUNT$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>GL_ACCOUNT</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+      <associatedAttributeFeatures>
+        <attributeReference alias="CV_DIM_GL_ACCOUNT_CHRT_ACCTS" attributeName="CHRT_ACCTS"/>
+        <attributeReference alias="CV_DIM_GL_ACCOUNT_GL_ACCOUNT" attributeName="GL_ACCOUNT"/>
+        <attributeReference alias="CV_DIM_GL_ACCOUNT_GL_ACCOUNT_DESC" attributeName="GL_ACCOUNT_DESC"/>
+      </associatedAttributeFeatures>
+    </logicalJoin>
+    <logicalJoin associatedObjectUri="CV_DIM_DEBITOR">
+      <attributes>
+        <attributeRef>DEBITOR$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>DEBITOR</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+      <associatedAttributeFeatures>
+        <attributeReference alias="CV_DIM_DEBITOR_COUNTRY" attributeName="COUNTRY"/>
+        <attributeReference alias="CV_DIM_DEBITOR_COMP_CODE" attributeName="COMP_CODE"/>
+        <attributeReference alias="CV_DIM_DEBITOR_DEBITOR" attributeName="DEBITOR"/>
+        <attributeReference alias="CV_DIM_DEBITOR_CUST_CLASS" attributeName="CUST_CLASS"/>
+        <attributeReference alias="CV_DIM_DEBITOR_REGION" attributeName="REGION"/>
+        <attributeReference alias="CV_DIM_DEBITOR_DEBITOR_DESC" attributeName="DEBITOR_DESC"/>
+        <attributeReference alias="CV_DIM_DEBITOR_DIVISION" attributeName="DIVISION"/>
+        <attributeReference alias="CV_DIM_DEBITOR_DISTR_CHAN" attributeName="DISTR_CHAN"/>
+        <attributeReference alias="CV_DIM_DEBITOR_SALES_ORG" attributeName="SALES_ORG"/>
+        <attributeReference alias="CV_DIM_DEBITOR_CUST_GRP3" attributeName="CUST_GRP3"/>
+        <attributeReference alias="CV_DIM_DEBITOR_PMNTTRMS" attributeName="PMNTTRMS"/>
+        <attributeReference alias="CV_DIM_DEBITOR_SALES_DIST" attributeName="SALES_DIST"/>
+        <attributeReference alias="CV_DIM_DEBITOR_SALES_GRP" attributeName="SALES_GRP"/>
+        <attributeReference alias="CV_DIM_DEBITOR_SALES_OFF" attributeName="SALES_OFF"/>
+      </associatedAttributeFeatures>
+    </logicalJoin>
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-81" y="352"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="235" y="352"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="90" y="238"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Union_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="251" y="16"/>
+      <rectangleSize width="163"/>
+    </shape>
+    <shape modelObjectName="CV_DIM_COMP_CODE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="478" y="112"/>
+      <rectangleSize width="193"/>
+    </shape>
+    <shape modelObjectName="CV_DIM_GL_ACCOUNT" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="478" y="284"/>
+      <rectangleSize width="199"/>
+    </shape>
+    <shape modelObjectName="CV_DIM_DEBITOR" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="16" y="96"/>
+      <rectangleSize width="171"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
